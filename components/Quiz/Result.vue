@@ -1,6 +1,6 @@
 <script setup lang="ts">
 defineProps({
-  result: { type: Number, require: true },
+  result: { type: Number, required: true },
 })
 </script>
 
@@ -11,4 +11,3 @@ defineProps({
   </div>
 </template>
 
-<style scoped lang="scss"></style>
