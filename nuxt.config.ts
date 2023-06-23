@@ -2,7 +2,7 @@
 export default defineNuxtConfig({
   app: {
     head: {
-      title: "Nuxt Blueprint",
+      title: "Zero To Mastery",
       htmlAttrs: {
         lang: "en",
       },
