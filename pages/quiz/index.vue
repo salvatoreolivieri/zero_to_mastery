@@ -25,16 +25,18 @@ const reset = () => {
 <template>
   <header>
     <div class="ctr">
-      <QuizQuestions
-        v-if="showQuestions"
-        :questions="data.questions"
-        :questions-answered="questionsAnswered"
-        @on-choose-answer="handleChooseAnswer"
-      />
-      <div v-else>
-        <QuizResult :results="data.results" :correct-answer="correctAnswer" />
-        <button @click="reset" type="button" class="reset-btn">Reset</button>
-      </div>
+      <transition name="fade">
+        <QuizQuestions
+          v-if="showQuestions"
+          :questions="data.questions"
+          :questions-answered="questionsAnswered"
+          @on-choose-answer="handleChooseAnswer"
+        />
+        <div v-else>
+          <QuizResult :results="data.results" :correct-answer="correctAnswer" />
+          <button @click="reset" type="button" class="reset-btn">Reset</button>
+        </div>
+      </transition>
     </div>
   </header>
 </template>

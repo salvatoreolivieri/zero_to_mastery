@@ -29,22 +29,24 @@ const emit = defineEmits<{
       </div>
     </div>
 
-    <div
-      v-for="({ q, answers }, index) in questions"
-      :key="index"
-      v-show="index === questionsAnswered"
-      class="single-question"
-    >
-      <div class="question">{{ q }}</div>
-      <div class="answers">
-        <p
-          v-for="{ text, is_correct } in answers"
-          @click="selectAnswer(is_correct)"
-          class="answer"
-        >
-          {{ text }}
-        </p>
+    <transition-group name="fade">
+      <div
+        v-for="({ q, answers }, index) in questions"
+        :key="index"
+        v-show="index === questionsAnswered"
+        class="single-question"
+      >
+        <div class="question">{{ q }}</div>
+        <div class="answers">
+          <p
+            v-for="{ text, is_correct } in answers"
+            @click="selectAnswer(is_correct)"
+            class="answer"
+          >
+            {{ text }}
+          </p>
+        </div>
       </div>
-    </div>
+    </transition-group>
   </div>
 </template>
