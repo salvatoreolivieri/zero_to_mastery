@@ -2,7 +2,7 @@
 import { data } from "~/data/questions"
 
 const questionsAnswered = ref(0)
-const result = ref(0)
+const correctAnswer = ref(0)
 
 const showQuestions = computed(
   () => questionsAnswered.value < data.questions.length
@@ -12,13 +12,13 @@ const handleChooseAnswer = (isCorrect: boolean) => {
   questionsAnswered.value++
 
   if (isCorrect) {
-    result.value++
+    correctAnswer.value++
   }
 }
 
 const reset = () => {
   questionsAnswered.value = 0
-  result.value = 0
+  correctAnswer.value = 0
 }
 </script>
 
@@ -31,7 +31,11 @@ const reset = () => {
         :questions-answered="questionsAnswered"
         @on-choose-answer="handleChooseAnswer"
       />
-      <QuizResult v-else :result="result" />
+      <QuizResult
+        v-else
+        :results="data.results"
+        :correct-answer="correctAnswer"
+      />
 
       <button @click="reset" type="button" class="reset-btn">Reset</button>
     </div>
