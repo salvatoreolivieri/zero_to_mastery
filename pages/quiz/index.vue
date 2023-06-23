@@ -33,14 +33,6 @@ const reset = () => {
       />
       <QuizResult v-else :results="result" />
 
-      <pre>
-        questionsAnswered: {{ questionsAnswered }}
-      </pre>
-
-      <pre>
-        result: {{ result }}
-      </pre>
-
       <button @click="reset" type="button" class="reset-btn">Reset</button>
     </div>
   </header>
