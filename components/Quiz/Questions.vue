@@ -8,7 +8,7 @@ defineProps({
   },
 })
 
-const handleChooseAnswer = (isCorrect: boolean) => {
+const selectAnswer = (isCorrect: boolean) => {
   emit("onChooseAnswer", isCorrect)
 }
 
@@ -36,7 +36,7 @@ const emit = defineEmits<{
       <div class="answers">
         <p
           v-for="{ text, is_correct } in answers"
-          @click="handleChooseAnswer(is_correct)"
+          @click="selectAnswer(is_correct)"
           class="answer"
         >
           {{ text }}
