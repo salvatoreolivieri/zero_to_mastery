@@ -2,19 +2,46 @@
 import { data } from "~/data/questions"
 
 const questionsAnswered = ref(0)
+const result = ref(0)
 
 const showQuestions = computed(
   () => questionsAnswered.value < data.questions.length
 )
+
+const handleChooseAnswer = (isCorrect: boolean) => {
+  questionsAnswered.value++
+
+  if (isCorrect) {
+    result.value++
+  }
+}
+
+const reset = () => {
+  questionsAnswered.value = 0
+  result.value = 0
+}
 </script>
 
 <template>
   <header>
     <div class="ctr">
-      <QuizQuestions v-if="showQuestions" :questions="data.questions" />
-      <QuizResult v-else />
+      <QuizQuestions
+        v-if="showQuestions"
+        :questions="data.questions"
+        :questions-answered="questionsAnswered"
+        @on-choose-answer="handleChooseAnswer"
+      />
+      <QuizResult v-else :results="result" />
 
-      <button type="button" class="reset-btn">Reset</button>
+      <pre>
+        questionsAnswered: {{ questionsAnswered }}
+      </pre>
+
+      <pre>
+        result: {{ result }}
+      </pre>
+
+      <button @click="reset" type="button" class="reset-btn">Reset</button>
     </div>
   </header>
 </template>

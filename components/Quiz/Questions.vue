@@ -1,27 +1,47 @@
 <script setup lang="ts">
 defineProps({
   questions: Array,
+  questionsAnswered: {
+    type: Number,
+    required: true,
+    default: 1,
+  },
 })
+
+const handleChooseAnswer = (isCorrect: boolean) => {
+  emit("onChooseAnswer", isCorrect)
+}
+
+const emit = defineEmits<{
+  (e: "onChooseAnswer", isCorrect: boolean): void
+}>()
 </script>
 
 <template>
   <div class="questions-ctr">
     <div class="progress">
       <div class="bar"></div>
-      <div class="status">1 out of 3 questions answered</div>
+      <div class="status">
+        {{ questionsAnswered + 1 }} out of 3 questions answered
+      </div>
     </div>
 
     <div
       v-for="({ q, answers }, index) in questions"
       :key="index"
+      v-show="index === questionsAnswered"
       class="single-question"
     >
       <div class="question">{{ q }}</div>
-      <div v-for="{ text } in answers" class="answers">
-        <p class="answer">{{ text }}</p>
+      <div class="answers">
+        <p
+          v-for="{ text, is_correct } in answers"
+          @click="handleChooseAnswer(is_correct)"
+          class="answer"
+        >
+          {{ text }}
+        </p>
       </div>
     </div>
   </div>
 </template>
-
-<style scoped lang="scss"></style>
