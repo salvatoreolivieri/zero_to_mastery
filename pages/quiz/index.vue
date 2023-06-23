@@ -31,13 +31,10 @@ const reset = () => {
         :questions-answered="questionsAnswered"
         @on-choose-answer="handleChooseAnswer"
       />
-      <QuizResult
-        v-else
-        :results="data.results"
-        :correct-answer="correctAnswer"
-      />
-
-      <button @click="reset" type="button" class="reset-btn">Reset</button>
+      <div v-else>
+        <QuizResult :results="data.results" :correct-answer="correctAnswer" />
+        <button @click="reset" type="button" class="reset-btn">Reset</button>
+      </div>
     </div>
   </header>
 </template>
