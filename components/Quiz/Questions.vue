@@ -1,6 +1,6 @@
 <script setup lang="ts">
 defineProps({
-  questions: Array,
+  questions: { type: Array, required: true },
   questionsAnswered: {
     type: Number,
     required: true,
@@ -20,7 +20,10 @@ const emit = defineEmits<{
 <template>
   <div class="questions-ctr">
     <div class="progress">
-      <div class="bar"></div>
+      <div
+        :style="{ width: `${(questionsAnswered / questions.length) * 100}% ` }"
+        class="bar"
+      ></div>
       <div class="status">
         {{ questionsAnswered + 1 }} out of 3 questions answered
       </div>
