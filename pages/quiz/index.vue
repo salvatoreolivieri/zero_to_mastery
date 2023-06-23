@@ -31,7 +31,7 @@ const reset = () => {
         :questions-answered="questionsAnswered"
         @on-choose-answer="handleChooseAnswer"
       />
-      <QuizResult v-else :results="result" />
+      <QuizResult v-else :result="result" />
 
       <button @click="reset" type="button" class="reset-btn">Reset</button>
     </div>
